@@ -11,11 +11,6 @@ use App\Http\Resources\Games\GameResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-/**
- * Class GamesController
- *
- * @package App\Http\Controllers\Api
- */
 class GamesController extends Controller
 {
     /**

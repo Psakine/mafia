@@ -27,15 +27,20 @@ Route::group(['middleware' => ['jsonify']], function ($router) {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/players', [PlayersController::class, 'players']);
     Route::group(['middleware' => ['auth']], function(){
-        Route::get('/games', [GamesController::class, 'games']);
-        Route::post('/create-game', [GamesController::class, 'create']);
-        Route::post('/edit-game', [GamesController::class, 'edit']);
-        Route::post('/delete-game', [GamesController::class, 'delete']);
-        Route::post('/add-player', [PlayersController::class, 'addPlayer']);
-        Route::post('/edit-player', [PlayersController::class, 'editPlayer']);
-        Route::post('/delete-player', [PlayersController::class, 'deletePlayer']);
-        Route::post('/add-player-to-game', [GamesController::class, 'addPlayerToGame']);
-        Route::post('/edit-player-at-game', [GamesController::class, 'editPlayerAtGame']);
-        Route::post('/delete-player-from-game', [GamesController::class, 'deletePlayerFromGame']);
+        Route::prefix('games')->group(function(){
+            Route::get('/', [GamesController::class, 'games']);
+            Route::post('/create', [GamesController::class, 'create']);
+            Route::post('/edit', [GamesController::class, 'edit']);
+            Route::post('/delete', [GamesController::class, 'delete']);
+            Route::post('/add-player', [GamesController::class, 'addPlayer']);
+            Route::post('/edit-player', [GamesController::class, 'editPlayer']);
+            Route::post('/delete-player', [GamesController::class, 'deletePlayer']);
+        });
+        Route::prefix('players')->group(function(){
+            Route::get('/', [PlayersController::class, 'players']);
+            Route::post('/create', [PlayersController::class, 'create']);
+            Route::post('/edit', [PlayersController::class, 'edit']);
+            Route::post('/delete', [PlayersController::class, 'delete']);
+        });
     });
 });

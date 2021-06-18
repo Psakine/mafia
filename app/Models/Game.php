@@ -9,6 +9,11 @@ class Game extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
+    public string $name;
+
     protected $fillable = [
         'name'
     ];

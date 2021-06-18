@@ -5,14 +5,23 @@ namespace App\Services;
 
 
 use App\Contracts\GameContract;
-use App\Exceptions\Api\GameCreateException;
-use App\Exceptions\Games\GameDeleteException;
+use App\Exceptions\Api\Games\GameCreateException;
+use App\Exceptions\Api\Games\GameDeleteException;
 use App\Models\Game;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
 class GameService implements GameContract
 {
+
+    /**
+     * @var Game
+     */
+    protected Game $game;
+
+    public function __construct(Game $game) {
+        $this->game = $game;
+    }
 
     /**
      * @param array $game
@@ -22,7 +31,7 @@ class GameService implements GameContract
     public function create(array $game): Game
     {
         try{
-            return Game::create($game);
+            return $this->game->create($game);
         }catch (Exception $exception){
             throw new GameCreateException("Filed to create game", 422, $exception);
         }
@@ -39,10 +48,15 @@ class GameService implements GameContract
     /**
      * @param array $game
      * @return Game
+     * @throws GameDeleteException
      */
     public function edit(array $game): Game
     {
-        // TODO: Implement edit() method.
+        try{
+            return Game::whereId($game['id'])->first()->update($game);
+        }catch (Exception $exception){
+            throw new GameDeleteException("Filed to delete game", 422, $exception);
+        }
     }
 
     /**

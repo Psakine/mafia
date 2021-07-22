@@ -16,13 +16,8 @@ class CreatePlayersTable extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id();
             $table->string('nickname');
-            $table->unsignedBigInteger('photo_id')->nullable();
-            $table->timestamps();
-
-            $table->foreign('photo_id')
-                ->references('id')
-                ->on('photos')
-                ->nullOnDelete();
+            $table->string('club')->nullable();
+            $table->string('photo_src')->nullable();
         });
     }
 

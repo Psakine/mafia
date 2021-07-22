@@ -10,10 +10,8 @@ class Game extends Model
     use HasFactory;
 
     /**
-     * @var string
+     * @var array
      */
-    public string $name;
-
     protected $fillable = [
         'name'
     ];

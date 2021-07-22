@@ -2,23 +2,22 @@
 
 namespace App\Http\Resources\Games;
 
-use App\Models\Game;
+use App\Models\GamePlayer;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GameResource extends JsonResource
+class GameDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
     {
-        /**@var Game $this */
+        /**@var GamePlayer $this */
         return [
-            'id' => $this->id,
-            'name' => $this->name
+            'name'   => $this->name
         ];
     }
 }

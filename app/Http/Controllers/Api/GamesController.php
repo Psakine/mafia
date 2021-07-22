@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Games\GameCreateRequest;
 use App\Http\Requests\Games\GameDeleteRequest;
 use App\Http\Requests\Games\GameEditRequest;
+use App\Http\Resources\Games\GameDetailResource;
+use App\Http\Resources\Games\GamePlayersDetailResource;
 use App\Http\Resources\Games\GameResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -16,7 +18,7 @@ class GamesController extends Controller
     /**
      * @var GameContract
      */
-    private GameContract $gameService;
+    private $gameService;
 
     /**
      * GamesController constructor.
@@ -70,5 +72,21 @@ class GamesController extends Controller
     public function edit(GameEditRequest $request): GameResource
     {
         return new GameResource($this->gameService->edit($request->toArray()));
+    }
+
+    /**
+     * @return AnonymousResourceCollection
+     */
+    public function getCurrentPlayers(): AnonymousResourceCollection
+    {
+        return GamePlayersDetailResource::collection($this->gameService->getCurrentPlayers());
+    }
+
+    /**
+     * @return GameDetailResource
+     */
+    public function getCurrentGame(): GameDetailResource
+    {
+        return new GameDetailResource($this->gameService->getCurrentGame());
     }
 }

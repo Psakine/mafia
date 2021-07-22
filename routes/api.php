@@ -23,24 +23,29 @@ Route::middleware('auth:api')->get(
         return $request->user();
     }
 );
-Route::group(['middleware' => ['jsonify']], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/players', [PlayersController::class, 'players']);
-    Route::group(['middleware' => ['auth']], function(){
-        Route::prefix('games')->group(function(){
-            Route::get('/', [GamesController::class, 'games']);
-            Route::post('/create', [GamesController::class, 'create']);
-            Route::post('/edit', [GamesController::class, 'edit']);
-            Route::post('/delete', [GamesController::class, 'delete']);
-            Route::post('/add-player', [GamesController::class, 'addPlayer']);
-            Route::post('/edit-player', [GamesController::class, 'editPlayer']);
-            Route::post('/delete-player', [GamesController::class, 'deletePlayer']);
-        });
-        Route::prefix('players')->group(function(){
-            Route::get('/', [PlayersController::class, 'players']);
-            Route::post('/create', [PlayersController::class, 'create']);
-            Route::post('/edit', [PlayersController::class, 'edit']);
-            Route::post('/delete', [PlayersController::class, 'delete']);
-        });
-    });
-});
+Route::group(
+    ['middleware' => ['jsonify']],
+    function ($router) {
+        Route::post('/login', [AuthController::class, 'login']);
+        Route::prefix('games')->group(
+            function () {
+                Route::get('/last-players', [GamesController::class, 'getCurrentPlayers']);
+                Route::get('/last-game', [GamesController::class, 'getCurrentGame']);
+                Route::post('/create', [GamesController::class, 'create']);
+                Route::post('/edit', [GamesController::class, 'edit']);
+                Route::post('/delete', [GamesController::class, 'delete']);
+                Route::post('/add-player', [GamesController::class, 'addPlayer']);
+                Route::post('/edit-player', [GamesController::class, 'editPlayer']);
+                Route::post('/delete-player', [GamesController::class, 'deletePlayer']);
+            }
+        );
+        Route::prefix('players')->group(
+            function () {
+                Route::get('/', [PlayersController::class, 'players']);
+                Route::post('/create', [PlayersController::class, 'create']);
+                Route::post('/edit', [PlayersController::class, 'edit']);
+                Route::post('/delete', [PlayersController::class, 'delete']);
+            }
+        );
+    }
+);

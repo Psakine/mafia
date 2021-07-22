@@ -11,7 +11,7 @@ class PlayersController extends Controller
     /**
      * @var PlayerContract
      */
-    private PlayerContract $playerService;
+    private $playerService;
 
     /**
      * PlayersController constructor.

@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
             case $exception instanceof ApiException:
                 return $this->jsonResponse($exception->getMessage(), $exception->getCode());
             case $exception instanceof ValidationException:
-                return $this->prepareValidationException($exception);
+                return $this->convertValidationExceptionToResponse($exception, $request);
             default:
                 return parent::render($request, $exception);
         }

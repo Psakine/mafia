@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Exceptions\Api;
+namespace App\Exceptions\Api\Games;
 
+use App\Exceptions\Api\ApiException;
 use Throwable;
 
-class GameCreateException extends ApiException
+class GameDeleteException extends ApiException
 {
     /**
      * Construct the exception.
@@ -16,7 +17,7 @@ class GameCreateException extends ApiException
     public function __construct($message = "", $code = 422, Throwable $previous = null)
     {
         if (empty($message)) {
-            $message = 'Filed to create game';
+            $message = 'Filed to delete game';
         }
 
         parent::__construct($message, $code, $previous);

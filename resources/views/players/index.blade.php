@@ -9,9 +9,6 @@
     <div class="col-sm text-center">
         Фото
     </div>
-    <div class="col-sm text-center">
-        Клуб
-    </div>
 </div>
 @if(!empty($players))
     @foreach($players as $player)
@@ -23,12 +20,14 @@
                 <a href="{{route('players.player', ['id' => $player->id])}}">{{$player->nickname}}</a>
             </div>
             <div class="col-sm text-center">
-                <img src="{{$player->photo_src}}" alt="">
-            </div>
-            <div class="col-sm text-center">
-                <a href="{{route('players.player', ['id' => $player->id])}}">{{$player->club}}</a>
+                <img class="w-25" src="{{$player->photo_src}}" alt="">
             </div>
         </div>
     @endforeach
 @endif
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.title = "Список игроков";
+  });
+</script>
 @include('footer')

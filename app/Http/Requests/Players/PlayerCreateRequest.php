@@ -25,8 +25,7 @@ class PlayerCreateRequest extends FormRequest
     {
         return [
             'nickname' => 'required|string',
-            'club'     => 'required|string',
-            'photo'    => 'required|file'
+            'photo'    => 'required|image'
         ];
     }
 
@@ -37,8 +36,8 @@ class PlayerCreateRequest extends FormRequest
     {
         return [
           'nickname.required' => 'Поле ник обязательно для заполнения',
-          'club.required' => 'Поле клуб обязательно для заполнения',
           'photo.required' => 'Поле фото обязательно для заполнения',
+          'photo.image' => 'Файл должен быть изображением',
         ];
     }
 }

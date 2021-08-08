@@ -1,15 +1,18 @@
 <?php
 namespace App\Contracts;
 
+use App\Http\Requests\Players\PlayerCreateRequest;
+use App\Models\Player;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 interface PlayerContract
 {
     /**
-     * @param array $data
+     * @param PlayerCreateRequest $request
      * @return mixed
      */
-    public function create(array $data): int;
+    public function create(PlayerCreateRequest $request): int;
 
     /**
      * @return Collection
@@ -18,7 +21,20 @@ interface PlayerContract
 
     /**
      * @param int $id
-     * @return Collection
+     * @return Player
      */
-    public function player(int $id): Collection;
+    public function player(int $id): Player;
+
+    /**
+     * @param int $id
+     * @param Request $request
+     * @return int
+     */
+    public function edit(int $id, Request $request): int;
+
+    /**
+     * @param int $id
+     * @return bool
+     */
+    public function delete(int $id): bool;
 }

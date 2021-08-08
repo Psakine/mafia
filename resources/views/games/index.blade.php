@@ -24,4 +24,9 @@
         </div>
     </div>
 @endforeach
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.title = "Список игр";
+  });
+</script>
 @include('footer')

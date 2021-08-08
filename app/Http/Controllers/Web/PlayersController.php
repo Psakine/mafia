@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Web;
 use App\Contracts\PlayerContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Players\PlayerCreateRequest;
-use App\Http\Requests\PlayersAddRequest;
-use App\Models\Player;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class PlayersController extends Controller
 {
@@ -44,6 +43,9 @@ class PlayersController extends Controller
         return view('players.player', ['player' => $this->playerService->player($id)]);
     }
 
+    /**
+     * @return View
+     */
     public function create(): View
     {
         return view('players.create');
@@ -55,6 +57,38 @@ class PlayersController extends Controller
      */
     public function store(PlayerCreateRequest $request): RedirectResponse
     {
-        return redirect(route('players.player', ['id' => $this->playerService->create($request->toArray())]));
+        return redirect(route('players.player', ['id' => $this->playerService->create($request)]));
+    }
+
+    /**
+     * @param int $id
+     * @return View
+     */
+    public function edit(int $id): View
+    {
+        return view('players.edit', ['player' => $this->playerService->player($id)]);
+    }
+
+    /**
+     * @param int $id
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function update(int $id, Request $request): RedirectResponse
+    {
+        $this->playerService->edit($id, $request);
+
+        return redirect(route('players', ['id' => $this->playerService->edit($id, $request)]));
+    }
+
+    /**
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function delete(int $id): RedirectResponse
+    {
+        $this->playerService->delete($id);
+
+        return redirect(route('players'));
     }
 }

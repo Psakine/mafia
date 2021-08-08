@@ -18,44 +18,34 @@ class DatabaseSeeder extends Seeder
     {
         $players = [
             [
-                'nickname' => 'Гендальф',
-                'club'     => 'OM'
+                'nickname' => 'Гендальф'
             ],
             [
-                'nickname' => 'Патрикеевна',
-                'club'     => 'OM'
+                'nickname' => 'Патрикеевна'
             ],
             [
-                'nickname' => 'Кольт',
-                'club'     => 'OM'
+                'nickname' => 'Кольт'
             ],
             [
-                'nickname' => 'Негодяй',
-                'club'     => 'OM'
+                'nickname' => 'Негодяй'
             ],
             [
-                'nickname' => 'Некомата',
-                'club'     => 'OM'
+                'nickname' => 'Некомата'
             ],
             [
-                'nickname' => 'РедСан',
-                'club'     => 'OM'
+                'nickname' => 'РедСан'
             ],
             [
-                'nickname' => 'Яррус',
-                'club'     => 'OM'
+                'nickname' => 'Яррус'
             ],
             [
-                'nickname' => 'Рамзес',
-                'club'     => 'OM'
+                'nickname' => 'Рамзес'
             ],
             [
-                'nickname' => 'Таньчур',
-                'club'     => 'OM'
+                'nickname' => 'Таньчур'
             ],
             [
-                'nickname' => 'Иггдрасиль',
-                'club'     => 'OM'
+                'nickname' => 'Иггдрасиль'
             ]
         ];
 

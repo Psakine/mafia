@@ -1,5 +1,4 @@
 @include('header')
-@csrf
 <div class="form-row mb-4">
     <div class="col">
         <label for="inputEmail4">Название игры</label>
@@ -35,4 +34,9 @@
         </div>
     </div>
 @endforeach
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.title = "{{$game->name}}";
+  });
+</script>
 @include('footer')

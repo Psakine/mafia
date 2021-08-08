@@ -96,4 +96,9 @@
 
     <button type="submit" class="btn btn-primary my-1">Сохранить</button>
 </form>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.title = "{{$game->name}}";
+  });
+</script>
 @include('footer')

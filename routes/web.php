@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function (){
+    return redirect('games');
+});
+Route::get('/game', function (){
+    return view('front.game');
+});
 Route::prefix('/games')->name('games')->group(function (){
     Route::get('/', [GamesController::class, 'games']);
     Route::get('create', [GamesController::class, 'create'])->name('.create');

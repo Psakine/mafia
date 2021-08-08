@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\GamesController;
 use App\Http\Controllers\Api\PlayersController;
 use Illuminate\Http\Request;
@@ -26,6 +27,8 @@ Route::middleware('auth:api')->get(
 Route::group(
     ['middleware' => ['jsonify']],
     function ($router) {
+        Route::post('/file/upload', [FileController::class, 'upload']);
+        Route::post('/file/delete', [FileController::class, 'delete']);
         Route::post('/login', [AuthController::class, 'login']);
         Route::prefix('games')->group(
             function () {

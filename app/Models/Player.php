@@ -9,5 +9,13 @@ class Player extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nickname', 'club'];
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['nickname', 'photo_src'];
 }

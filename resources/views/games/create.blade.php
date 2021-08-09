@@ -60,6 +60,7 @@
             <div class="form-group col-md-3">
                 <label for="inputRole{{$i}}">Роль</label>
                 <select id="inputRole{{$i}}" class="form-control" name="game[players][{{$i}}][role]" required>
+                    <option value="citizen">Мирный</option>
                     @foreach ($roles as $roleKey => $role)
                         <option value="{{$role}}" @if($session->getOldInput("game.players.{$i}.role") == $role) selected="selected"@endif>{{$roleKey}}</option>
                     @endforeach

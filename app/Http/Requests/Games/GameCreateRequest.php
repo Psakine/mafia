@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Games;
 
+use App\Rules\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class GameCreateRequest extends FormRequest
@@ -26,7 +27,7 @@ class GameCreateRequest extends FormRequest
         return [
             'game.name' => 'required|string|max:32|min:6|unique:games,name',
             'game.players.*.id' => 'required|string|distinct',
-            'game.players.*.role' => 'required|string',
+            'game.players.*.role' => ['required', 'string', new Role($this)],
             'game.players.*.place' => 'required|string',
         ];
     }

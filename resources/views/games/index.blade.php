@@ -10,6 +10,9 @@
     <div class="col-sm text-center">
         Дата создания
     </div>
+    <div class="col-sm text-center">
+        Удалить
+    </div>
 </div>
 @foreach($games as $game)
     <div class="row">
@@ -21,6 +24,9 @@
         </div>
         <div class="col-sm text-center">
             {{$game->created_at}}
+        </div>
+        <div class="col-sm text-center">
+            <a href="{{route('games.delete', ['id' => $game->id])}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
         </div>
     </div>
 @endforeach

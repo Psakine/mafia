@@ -1,0 +1,7 @@
+up:
+	docker-compose up -d --build
+	composer install
+	cp ./.env.example ./.env
+	php artisan migrate
+	php artisan key:generate
+	php artisan jwt:secret

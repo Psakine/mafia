@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\GamesController;
 use App\Http\Controllers\Web\PlayersController;
+use App\Http\Middleware\SecurityMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,8 @@ Route::get('/', function (){
 Route::get('/game', function (){
     return view('front.game');
 });
-Route::prefix('/games')->name('games')->group(function (){
+
+Route::prefix('/games')->middleware(SecurityMiddleware::class)->name('games')->group(function (){
     Route::get('/', [GamesController::class, 'games']);
     Route::get('create', [GamesController::class, 'create'])->name('.create');
     Route::post('store', [GamesController::class, 'store'])->name('.store');
@@ -31,7 +33,7 @@ Route::prefix('/games')->name('games')->group(function (){
     Route::post('update/{id}', [GamesController::class, 'update'])->name('.update');
 });
 
-Route::prefix('/players')->name('players')->group(function (){
+Route::prefix('/players')->middleware(SecurityMiddleware::class)->name('players')->group(function (){
     Route::get('/', [PlayersController::class, 'players']);
     Route::get('create', [PlayersController::class, 'create'])->name('.create');
     Route::post('store', [PlayersController::class, 'store'])->name('.store');
